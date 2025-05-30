@@ -1,4 +1,4 @@
-## Hi there 👋
+## Hi there 👋 I'm Marshall Frieden, a Family Medicine Physician and Clinical Informaticist trying to leverage technology to improve patient care!
 
 <!--
 **mjfrieden/mjfrieden** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
