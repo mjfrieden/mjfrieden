@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tokens    OAuthToken[]
+  sources   DataSourceConnection[]
+  immunizations CachedImmunization[]
+}
+
+model OAuthToken {
+  id         String   @id @default(cuid())
+  provider   String
+  accessToken String
+  refreshToken String?
+  expiresAt  DateTime?
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  createdAt  DateTime @default(now())
+}
+
+model DataSourceConnection {
+  id        String   @id @default(cuid())
+  type      String
+  status    String
+  demoMode  Boolean  @default(true)
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, type])
+}
+
+model CachedImmunization {
+  id         String   @id @default(cuid())
+  fhirId     String
+  sourceType String
+  data       Json
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  createdAt  DateTime @default(now())
+}
