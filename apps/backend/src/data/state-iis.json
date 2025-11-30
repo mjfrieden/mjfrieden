@@ -1,0 +1,10 @@
+[
+  {
+    "resourceType": "Immunization",
+    "id": "iis-1",
+    "status": "completed",
+    "vaccineCode": { "coding": [{ "system": "http://hl7.org/fhir/sid/cvx", "code": "207", "display": "COVID-19 mRNA" }] },
+    "patient": { "reference": "Patient/demo" },
+    "occurrenceDateTime": "2023-01-15"
+  }
+]
